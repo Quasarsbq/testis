@@ -13,6 +13,7 @@ namespace NetCore
     {
         public static void Main(string[] args)
         {
+            Telegram.Bot.TelegramBotClient bot = new Telegram.Bot.TelegramBotClient("443096045:AAG6r5n2SgzhLvi_Pgx4ZvLDjrtm9dOu3xU");
             var config = new ConfigurationBuilder().AddEnvironmentVariables("").Build();
             // 2nd line added
             var url = config["ASPNETCORE_URLS"] ?? "http://*:8080";
@@ -26,6 +27,16 @@ namespace NetCore
                 .Build();
 
             host.Run();
+            
+            bot.OnMessage += Bot_OnMessage;
+            bot.StartReceiving();
+        }
+
+        private static void Bot_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
+        {
+            Telegram.Bot.TelegramBotClient bot = new Telegram.Bot.TelegramBotClient("443096045:AAG6r5n2SgzhLvi_Pgx4ZvLDjrtm9dOu3xU");
+
+            bot.SendTextMessageAsync(e.Message.Chat.Id, "run");
         }
     }
 }

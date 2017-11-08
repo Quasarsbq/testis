@@ -8,5 +8,6 @@ namespace NetCore.Controllers
 {
     public class catconroller
     {
+
     }
 }
