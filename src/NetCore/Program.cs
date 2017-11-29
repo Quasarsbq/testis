@@ -13,19 +13,25 @@ namespace NetCore
     {
         public static void Main(string[] args)
         {
-            var config = new ConfigurationBuilder().AddEnvironmentVariables("").Build();
-            // 2nd line added
-            var url = config["ASPNETCORE_URLS"] ?? "http://*:8080";
-            // 3rd line added
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseUrls(url) // 4th line added
-                .Build();
+            while (true)
+            {
+                if(DateTime.Now.Minute.ToString().Contains("5"))
+                System.Diagnostics.Process.Start("http://www.mohemnis.somee.com");
 
-            host.Run();
+                var config = new ConfigurationBuilder().AddEnvironmentVariables("").Build();
+                // 2nd line added
+                var url = config["ASPNETCORE_URLS"] ?? "http://*:8080";
+                // 3rd line added
+                var host = new WebHostBuilder()
+                    .UseKestrel()
+                    .UseContentRoot(Directory.GetCurrentDirectory())
+                    .UseIISIntegration()
+                    .UseStartup<Startup>()
+                    .UseUrls(url) // 4th line added
+                    .Build();
+
+                host.Run();
+            }
         }
     }
 }
