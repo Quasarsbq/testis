@@ -13,8 +13,11 @@ namespace NetCore.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "Nom nomic nom is", "ma noxodino" };
+            shomare shomare = new shomare();
+
+            return new string[] {  shomare.dada(), "ma noxodino" };
         }
+       
 
         // GET api/values/5
         [HttpGet("{id}")]

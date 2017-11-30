@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using System.Net;
 
 namespace NetCore
 {
+    
     public class Program
     {
         public static void Main(string[] args)
         {
-            while (true)
-            {
-                if(DateTime.Now.Minute.ToString().Contains("5"))
-                System.Diagnostics.Process.Start("http://www.mohemnis.somee.com");
-
-                var config = new ConfigurationBuilder().AddEnvironmentVariables("").Build();
+            
+            var config = new ConfigurationBuilder().AddEnvironmentVariables("").Build();
                 // 2nd line added
                 var url = config["ASPNETCORE_URLS"] ?? "http://*:8080";
                 // 3rd line added
@@ -31,6 +29,19 @@ namespace NetCore
                     .Build();
 
                 host.Run();
+            while (true)
+            {
+                if (DateTime.Now.Minute.ToString().Contains("5"))
+                {
+                    try
+                    {
+                        System.Net.WebRequest request = WebRequest.Create("http://mohemnis.somee.com/");
+                        request.GetResponseAsync();
+
+                    }
+                    catch
+                    { }
+                }
             }
         }
     }
