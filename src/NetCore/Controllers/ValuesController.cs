@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace NetCore.Controllers
 {
@@ -13,9 +14,15 @@ namespace NetCore.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            shomare shomare = new shomare();
-
-            return new string[] {  shomare.dada(), "ma noxodino" };
+            while (true)
+            {
+                System.Net.WebRequest request = WebRequest.Create("http://mohemnis.somee.com/");
+                System.Net.WebRequest request1 = WebRequest.Create("http://testis-d3.7e14.starter-us-west-2.openshiftapps.com/api/values");
+                request.GetResponseAsync();
+                request1.GetResponseAsync();
+                new System.Threading.ManualResetEvent(false).WaitOne(180000);
+                return new string[] { "done", "ma noxodino" };
+            }
         }
        
 
