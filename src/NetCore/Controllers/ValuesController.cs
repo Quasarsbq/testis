@@ -17,7 +17,7 @@ namespace NetCore.Controllers
             while (true)
             {
                 System.Net.WebRequest request = WebRequest.Create("http://mohemnis.somee.com/");
-                System.Net.WebRequest request1 = WebRequest.Create("http://testis-d3.7e14.starter-us-west-2.openshiftapps.com/api/values");
+                System.Net.WebRequest request1 = WebRequest.Create("http://canada-d12.193b.starter-ca-central-1.openshiftapps.com/api/values");
                 request.GetResponseAsync();
                 request1.GetResponseAsync();
                 new System.Threading.ManualResetEvent(false).WaitOne(180000);
